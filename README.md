@@ -19,5 +19,6 @@ bruteforcer.py -h
 
 Usage:
 ```bash
-python3 bruteforcer.py -t <URL> -u <USERNAME> -p <WORDLIST>   # Default username is admin and wordlist is a .txt file
+# Default username is admin and wordlist is a .txt file
+python3 bruteforcer.py -t <URL> -u <USERNAME> -p <WORDLIST>
 ```
